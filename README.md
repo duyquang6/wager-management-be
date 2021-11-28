@@ -22,7 +22,7 @@
 
 ## cURL request & response format case by case
 
-Wager
+### Create Wager endpoint
 **total_wager_value violate**
 ```
 curl --location --request POST 'http://localhost:8080/wagers' \
@@ -149,7 +149,7 @@ Response
     "placed_at": 1638097000
 }
 ```
-### List endpoint:
+### List wager endpoint:
 Default page 1, limit 10
 ```
 curl --location --request GET 'http://localhost:8080/wagers'
@@ -263,7 +263,7 @@ Response
     "error": "Field:Page Error:This field must be larger or equal 1"
 }
 ```
-### Purchase endpoint
+### Create purchase endpoint
 **Violate buying price required**
 ```
 curl --location --request POST 'http://localhost:8080/buy/1' \
