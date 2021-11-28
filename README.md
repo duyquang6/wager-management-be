@@ -294,6 +294,21 @@ Response
 }
 ```
 
+**Violate Wager ID not found**
+```
+curl --location --request POST 'http://localhost:8080/buy/1' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "buying_price": 500
+}'
+```
+Response
+```
+{
+    "error": "related wager id 1 not found"
+}
+```
+
 **Success**
 ```
 curl --location --request POST 'http://localhost:8080/buy/1' \
