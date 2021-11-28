@@ -5,7 +5,7 @@
 
 ## Bootstrap
 - Run `chmod +x start.sh` if start.sh script does not have privileged to run
-- Run quick bootstrap app (include build, start docker, migrate schema and start app) `./start.sh --bootstrap`, it will ready to accept connection to :8080 local
+- Run `./start.sh --bootstrap` quick bootstrap app (include build, start docker, migrate schema and start app), it will ready to accept connection to :8080 local
 - Run `make docker.local.stop` to cleanup
 
 ## For developing
