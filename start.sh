@@ -31,6 +31,7 @@ bootstrap() {
   sleep 30
   echo "----------- DONE -------------"
   echo "Try hit endpoint http://0.0.0.0:8080/wagers !"
+  echo "Run make docker.local.stop to stop docker instances"
 }
 
 # Bootup docker & run integration test
