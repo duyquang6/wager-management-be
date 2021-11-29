@@ -40,12 +40,12 @@ func NewPurchaseService(dbFactory database.DBFactory,
 	}
 }
 
-// CreatePurchase place new wager
+// CreatePurchase for creating purchase
 func (s *purchaseSvc) CreatePurchase(ctx context.Context, request dto.CreatePurchaseRequest) (dto.CreatePurchaseResponse, error) {
 	var (
 		// Begin transaction, CreatePurchase need manipulate to modify Wager and Purchase at same time
 		tx       = s.dbFactory.GetDBWithTx()
-		function = "CreateWager"
+		function = "CreatePurchase"
 		logger   = logging.FromContext(ctx).Named(fmt.Sprintf(purchaseServiceLoggingFmt, function))
 		purchase model.Purchase
 	)
