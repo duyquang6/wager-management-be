@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "wager-management-be.fullname" . }}
+  labels:
+    {{- include "wager-management-be.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": pre-install,pre-upgrade
+    "helm.sh/hook-weight": "-6"
+    "helm.sh/hook-delete-policy": before-hook-creation
+data:  
+  DB_NAME: "wager-mgmt"
+  DB_USER: "dev"
+  DB_ADDRESS: "mysql:3306"
+  LOG_MODE: "production"
+  LOG_LEVEL: "INFO"
+  GIN_MODE: "release"

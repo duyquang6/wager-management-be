@@ -1,0 +1,17 @@
+apiVersion: skaffold/v2beta26
+kind: Config
+metadata:
+  name: wager-management-be
+build:
+  artifacts:
+  - image: dockerfile-image
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+    - k8s/deployment.yaml
+portForward:
+- resourceType: service
+  resourceName: dockerfile-image
+  port: 8080

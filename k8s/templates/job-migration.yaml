@@ -1,0 +1,36 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ include "wager-management-be.fullname" . }}-migration"
+  labels:
+    {{- include "wager-management-be.labels" . | nindent 4 }}
+  annotations:
+    # This is what defines this resource as a hook. Without this line, the
+    # job is considered part of the release.
+    "helm.sh/hook": pre-install,pre-upgrade
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+spec:
+  template:
+    metadata:
+      name: "{{ include "wager-management-be.fullname" . }}-migration"
+      labels:
+        {{- include "wager-management-be.selectorLabels" . | nindent 8 }}
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: "{{ include "wager-management-be.fullname" . }}-migration"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["./migrate"]
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "wager-management-be.fullname" . }}
+            - secretRef:
+                name: {{ include "wager-management-be.fullname" . }}
+          {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
