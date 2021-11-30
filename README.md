@@ -15,6 +15,12 @@
 - Stop local docker compose: `make docker.local.stop`
 - Migrate schema database: run `./start.sh --migrate`
 
+## Automate CI CD local
+Or you can use skaffold to automate that pipeline
+- Install skaffold, helm latest, minikube latest version
+- Run `skaffold dev --port-forward`
+- Every change to source code, will trigger build, unit-test and deploy locally
+
 ## Testing & Coverage
 - Run integration test(docker, go1.17 required): `./start.sh --integration`
 - Run unittest: `make test.unit`

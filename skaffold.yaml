@@ -10,11 +10,6 @@ test:
         dependencies:
           paths:
           -  "**/*_test.go"            
-      - command: ./start.sh --integration
-        timeoutSeconds: 120
-        dependencies:
-          paths:
-          -  "internal/integration/*_test.go"
 build:
   artifacts:
   - image: wager-management-be
