@@ -11,6 +11,8 @@ test:
           paths:
           -  "**/*_test.go"            
 build:
+  tagPolicy:
+    gitCommit: {}
   artifacts:
   - image: wager-management-be
     docker:
